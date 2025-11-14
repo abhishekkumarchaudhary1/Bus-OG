@@ -1,8 +1,6 @@
-export const metadata = {
-  title: "About Us | Bus OG",
-  description:
-    "Learn about Bus OG, our mission, and how we support corporate and individual clients with reliable transport and logistics.",
-};
+"use client";
+
+import { motion } from "framer-motion";
 
 const pillars = [
   {
@@ -25,7 +23,12 @@ const pillars = [
 export default function AboutPage() {
   return (
     <div className="space-y-16">
-      <header className="space-y-4">
+      <motion.header
+        className="space-y-4"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
         <h1 className="text-4xl font-semibold text-[#1a1a1a]">About Bus OG</h1>
         <p className="max-w-3xl text-base leading-relaxed text-[#6b6b6b]">
           Bus OG was founded to make corporate and personal transport simple,
@@ -33,13 +36,23 @@ export default function AboutPage() {
           knowledge with a dependable driver network so you can move people and
           cargo without surprises.
         </p>
-      </header>
+      </motion.header>
 
-      <section className="grid gap-6 md:grid-cols-3">
-        {pillars.map((pillar) => (
-          <div
+      <motion.section
+        className="grid gap-6 md:grid-cols-3"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        {pillars.map((pillar, index) => (
+          <motion.div
             key={pillar.title}
             className="space-y-3 rounded-3xl border border-[#e0e0e2] bg-white p-6 shadow-sm"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
           >
             <h2 className="text-xl font-semibold text-[#1a1a1a]">
               {pillar.title}
@@ -47,11 +60,17 @@ export default function AboutPage() {
             <p className="text-sm leading-relaxed text-[#6b6b6b]">
               {pillar.description}
             </p>
-          </div>
+          </motion.div>
         ))}
-      </section>
+      </motion.section>
 
-      <section className="space-y-4 rounded-3xl border border-[#e0e0e2] bg-[#f7f7f8] p-8 shadow-sm">
+      <motion.section
+        className="space-y-4 rounded-3xl border border-[#e0e0e2] bg-[#f7f7f8] p-8 shadow-sm"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
         <h2 className="text-2xl font-semibold text-[#1a1a1a]">
           Why partners rely on us
         </h2>
@@ -61,7 +80,7 @@ export default function AboutPage() {
           <li>Standby drivers for last-minute trips and contingencies.</li>
           <li>Regular safety briefings and health checks for every driver.</li>
         </ul>
-      </section>
+      </motion.section>
     </div>
   );
 }

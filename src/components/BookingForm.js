@@ -38,9 +38,9 @@ export default function BookingForm({ defaultVehicle }) {
     const nextErrors = {};
 
     if (!form.name.trim()) nextErrors.name = "Please enter your full name.";
-    if (!/^[+\\d\\s-]{7,}$/.test(form.phone.trim()))
+    if (!/^[+\d\s-]{7,}$/.test(form.phone.trim()))
       nextErrors.phone = "Please provide a valid phone number.";
-    if (!/^[\\w-.]+@[\\w-]+\\.[\\w-.]+$/.test(form.email.trim()))
+    if (!/^[\w.-]+@[\w-]+\.[\w.-]+$/.test(form.email.trim()))
       nextErrors.email = "Please enter a valid email address.";
     if (!form.vehicleType) nextErrors.vehicleType = "Select a vehicle type.";
     if (!form.pickup.trim())

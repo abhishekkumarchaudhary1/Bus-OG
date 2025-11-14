@@ -21,6 +21,7 @@ const navigation = [
   { href: "/drivers", label: "Driver contacts" },
   { href: "/booking", label: "Booking" },
   { href: "/about", label: "About" },
+  { href: "/team", label: "Team" },
   { href: "/contact", label: "Contact" },
 ];
 

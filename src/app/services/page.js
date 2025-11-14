@@ -1,3 +1,5 @@
+"use client";
+
 import ServiceCard from "@/components/ServiceCard";
 import {
   BusIllustration,
@@ -5,6 +7,7 @@ import {
   CarIllustration,
 } from "@/components/VehicleIllustrations";
 import { services } from "@/data/services";
+import { motion } from "framer-motion";
 
 const illustrationMap = {
   car: CarIllustration,
@@ -12,38 +15,56 @@ const illustrationMap = {
   canter: CanterIllustration,
 };
 
-export const metadata = {
-  title: "Services | Bus OG Vehicle Rentals",
-  description:
-    "Compare Bus OG rental services for cars, buses, and canters, each with vetted drivers and dispatch support.",
-};
-
 export default function ServicesPage() {
   return (
     <div className="space-y-16">
-      <header className="space-y-4">
+      <motion.header
+        className="space-y-4"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
         <h1 className="text-4xl font-semibold text-[#1a1a1a]">Our services</h1>
         <p className="max-w-3xl text-base leading-relaxed text-[#6b6b6b]">
           Each booking includes vetted drivers, live dispatch updates, and
           flexible scheduling. Choose the service that matches your trip and we
           will finalize the rest.
         </p>
-      </header>
+      </motion.header>
 
-      <div className="grid gap-8 md:grid-cols-3">
-        {services.map((service) => (
-          <ServiceCard
+      <motion.div
+        className="grid gap-8 md:grid-cols-3"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        {services.map((service, index) => (
+          <motion.div
             key={service.id}
-            title={service.title}
-            description={service.description}
-            cta={service.cta}
-            href={service.href}
-            Illustration={illustrationMap[service.id]}
-          />
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
+          >
+            <ServiceCard
+              title={service.title}
+              description={service.description}
+              cta={service.cta}
+              href={service.href}
+              Illustration={illustrationMap[service.id]}
+            />
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
 
-      <section className="space-y-5 rounded-3xl border border-[#e0e0e2] bg-white p-8 shadow-sm">
+      <motion.section
+        className="space-y-5 rounded-3xl border border-[#e0e0e2] bg-white p-8 shadow-sm"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
         <h2 className="text-2xl font-semibold text-[#1a1a1a]">
           Personal concierge for every booking
         </h2>
@@ -53,7 +74,7 @@ export default function ServicesPage() {
           drivers, and share service updates on WhatsApp or email—whichever you
           prefer.
         </p>
-      </section>
+      </motion.section>
     </div>
   );
 }

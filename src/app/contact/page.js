@@ -1,8 +1,6 @@
-export const metadata = {
-  title: "Contact | Bus OG",
-  description:
-    "Get in touch with Bus OG for bookings, partnerships, or driver onboarding. Call, email, or send a quick query.",
-};
+"use client";
+
+import { motion } from "framer-motion";
 
 const contactDetails = [
   { label: "Phone", value: "+254 700 555 111" },
@@ -14,31 +12,61 @@ const contactDetails = [
 export default function ContactPage() {
   return (
     <div className="space-y-14">
-      <header className="space-y-4">
+      <motion.header
+        className="space-y-4"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
         <h1 className="text-4xl font-semibold text-[#1a1a1a]">Contact us</h1>
         <p className="max-w-3xl text-base leading-relaxed text-[#6b6b6b]">
           Reach out for bookings, partnership inquiries, or to onboard your
           vehicle onto the Bus OG network. Our team responds within business
           hours and monitors urgent requests after hours.
         </p>
-      </header>
+      </motion.header>
 
-      <section className="grid gap-8 md:grid-cols-[1fr_1.1fr]">
-        <div className="space-y-5 rounded-3xl border border-[#e0e0e2] bg-white p-6 shadow-sm">
+      <motion.section
+        className="grid gap-8 md:grid-cols-[1fr_1.1fr]"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <motion.div
+          className="space-y-5 rounded-3xl border border-[#e0e0e2] bg-white p-6 shadow-sm"
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
           <h2 className="text-xl font-semibold text-[#1a1a1a]">
             Quick contacts
           </h2>
           <dl className="space-y-3 text-sm text-[#6b6b6b]">
-            {contactDetails.map((detail) => (
-              <div key={detail.label} className="flex items-start justify-between gap-4">
+            {contactDetails.map((detail, index) => (
+              <motion.div
+                key={detail.label}
+                className="flex items-start justify-between gap-4"
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+              >
                 <dt className="font-medium text-[#1a1a1a]">{detail.label}</dt>
                 <dd className="text-right">{detail.value}</dd>
-              </div>
+              </motion.div>
             ))}
           </dl>
-        </div>
+        </motion.div>
 
-        <form className="grid gap-4 rounded-3xl border border-[#e0e0e2] bg-white p-6 shadow-sm">
+        <motion.form
+          className="grid gap-4 rounded-3xl border border-[#e0e0e2] bg-white p-6 shadow-sm"
+          initial={{ opacity: 0, x: 20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
           <h2 className="text-xl font-semibold text-[#1a1a1a]">
             Send a quick query
           </h2>
@@ -72,8 +100,8 @@ export default function ContactPage() {
           >
             Send message
           </button>
-        </form>
-      </section>
+        </motion.form>
+      </motion.section>
     </div>
   );
 }

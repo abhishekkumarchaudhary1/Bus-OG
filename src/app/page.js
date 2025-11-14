@@ -1,3 +1,5 @@
+"use client";
+
 import HeroBanner from "@/components/HeroBanner";
 import ServiceCard from "@/components/ServiceCard";
 import {
@@ -7,6 +9,7 @@ import {
 } from "@/components/VehicleIllustrations";
 import { serviceHighlights, services } from "@/data/services";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 const illustrationMap = {
   car: CarIllustration,
@@ -32,8 +35,20 @@ export default function Home() {
         }
       />
 
-      <section className="space-y-10">
-        <header className="space-y-3">
+      <motion.section
+        className="space-y-10"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <motion.header
+          className="space-y-3"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
           <h2 className="text-3xl font-semibold text-[#1a1a1a]">
             Vehicles ready for your next assignment.
           </h2>
@@ -42,23 +57,42 @@ export default function Home() {
             a responsive dispatch team. Choose the vehicle that fits your
             journey and we will handle the rest.
           </p>
-        </header>
+        </motion.header>
         <div className="grid gap-8 md:grid-cols-3">
-          {services.map((service) => (
-            <ServiceCard
+          {services.map((service, index) => (
+            <motion.div
               key={service.id}
-              title={service.title}
-              description={service.description}
-              cta={service.cta}
-              href={service.href}
-              Illustration={illustrationMap[service.id]}
-            />
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
+            >
+              <ServiceCard
+                title={service.title}
+                description={service.description}
+                cta={service.cta}
+                href={service.href}
+                Illustration={illustrationMap[service.id]}
+              />
+            </motion.div>
           ))}
         </div>
-      </section>
+      </motion.section>
 
-      <section className="grid gap-8 rounded-3xl border border-[#e0e0e2] bg-white p-10 shadow-sm md:grid-cols-[1.2fr_1fr]">
-        <div className="space-y-4">
+      <motion.section
+        className="grid gap-8 rounded-3xl border border-[#e0e0e2] bg-white p-10 shadow-sm md:grid-cols-[1.2fr_1fr]"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <motion.div
+          className="space-y-4"
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
           <span className="inline-flex items-center rounded-full bg-[#efefef] px-3 py-1 text-xs font-semibold uppercase tracking-wide text-[#6b6b6b]">
             Dispatch advantage
           </span>
@@ -71,10 +105,14 @@ export default function Home() {
             drivers, and monitor each trip until the final drop-off.
           </p>
           <div className="grid gap-4 sm:grid-cols-3">
-            {serviceHighlights.map((highlight) => (
-              <div
+            {serviceHighlights.map((highlight, index) => (
+              <motion.div
                 key={highlight.label}
                 className="rounded-2xl bg-[#f7f7f8] p-4 text-sm"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
               >
                 <p className="text-xs uppercase tracking-wide text-[#6b6b6b]">
                   {highlight.label}
@@ -82,11 +120,17 @@ export default function Home() {
                 <p className="mt-1 text-base font-semibold text-[#1a1a1a]">
                   {highlight.value}
                 </p>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </div>
-        <div className="flex flex-col justify-between gap-6 rounded-3xl bg-gradient-to-b from-[#f7f7f8] to-white p-6">
+        </motion.div>
+        <motion.div
+          className="flex flex-col justify-between gap-6 rounded-3xl bg-gradient-to-b from-[#f7f7f8] to-white p-6"
+          initial={{ opacity: 0, x: 20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
           <div className="space-y-2">
             <h3 className="text-xl font-semibold text-[#1a1a1a]">
               Driver network on standby
@@ -102,11 +146,23 @@ export default function Home() {
           >
             View driver contacts
           </Link>
-        </div>
-      </section>
+        </motion.div>
+      </motion.section>
 
-      <section className="grid gap-10 rounded-3xl border border-[#e0e0e2] bg-[#f7f7f8] p-10 shadow-sm md:grid-cols-2">
-        <div className="space-y-4">
+      <motion.section
+        className="grid gap-10 rounded-3xl border border-[#e0e0e2] bg-[#f7f7f8] p-10 shadow-sm md:grid-cols-2"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <motion.div
+          className="space-y-4"
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
           <h2 className="text-2xl font-semibold text-[#1a1a1a]">
             Ready to plan your itinerary?
           </h2>
@@ -115,37 +171,54 @@ export default function Home() {
             recommend the right vehicles and drivers, then send a schedule for
             approval within the hour.
           </p>
-        </div>
-        <div className="grid gap-3 text-sm text-[#6b6b6b]">
-          <div className="rounded-2xl bg-white px-5 py-4 shadow-sm">
-            <p className="text-xs uppercase tracking-wide text-[#8aa6ff]">
-              Book car
-            </p>
-            <p className="text-base font-semibold text-[#1a1a1a]">
-              Executive sedans and SUVs for airport, board meetings, and guest
-              transport.
-            </p>
-          </div>
-          <div className="rounded-2xl bg-white px-5 py-4 shadow-sm">
-            <p className="text-xs uppercase tracking-wide text-[#8aa6ff]">
-              Book bus
-            </p>
-            <p className="text-base font-semibold text-[#1a1a1a]">
-              26–56 seater options with daily log sheets and onboard support.
-            </p>
-          </div>
-          <div className="rounded-2xl bg-white px-5 py-4 shadow-sm">
-            <p className="text-xs uppercase tracking-wide text-[#8aa6ff]">
-              Book canter
-            </p>
-            <p className="text-base font-semibold text-[#1a1a1a]">
-              Light trucks for containers, exhibitions, and time-sensitive cargo.
-            </p>
-          </div>
-        </div>
-      </section>
+        </motion.div>
+        <motion.div
+          className="grid gap-3 text-sm text-[#6b6b6b]"
+          initial={{ opacity: 0, x: 20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          {[
+            {
+              label: "Book car",
+              text: "Executive sedans and SUVs for airport, board meetings, and guest transport.",
+            },
+            {
+              label: "Book bus",
+              text: "26–56 seater options with daily log sheets and onboard support.",
+            },
+            {
+              label: "Book canter",
+              text: "Light trucks for containers, exhibitions, and time-sensitive cargo.",
+            },
+          ].map((item, index) => (
+            <motion.div
+              key={item.label}
+              className="rounded-2xl bg-white px-5 py-4 shadow-sm"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
+            >
+              <p className="text-xs uppercase tracking-wide text-[#8aa6ff]">
+                {item.label}
+              </p>
+              <p className="text-base font-semibold text-[#1a1a1a]">
+                {item.text}
+              </p>
+            </motion.div>
+          ))}
+        </motion.div>
+      </motion.section>
 
-      <footer className="grid gap-4 border-t border-[#ececee] pt-8 text-sm text-[#6b6b6b] sm:grid-cols-[1fr_auto] sm:items-center">
+      <motion.footer
+        className="grid gap-4 border-t border-[#ececee] pt-8 text-sm text-[#6b6b6b] sm:grid-cols-[1fr_auto] sm:items-center"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
         <p>© {currentYear} Bus OG. Vehicles and drivers that keep you moving.</p>
         <div className="flex gap-5">
           <Link href="/services" className="hover:text-[#1a1a1a]">
@@ -158,7 +231,7 @@ export default function Home() {
             hello@busog.city
           </a>
         </div>
-      </footer>
+      </motion.footer>
     </div>
   );
 }

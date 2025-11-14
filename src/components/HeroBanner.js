@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 export default function HeroBanner({
   eyebrow,
@@ -9,8 +12,18 @@ export default function HeroBanner({
   illustration,
 }) {
   return (
-    <section className="grid gap-10 rounded-3xl bg-gradient-to-br from-white to-[#f7f7f8] p-10 shadow-sm md:grid-cols-[1.1fr_1fr] md:items-center">
-      <div className="flex flex-col gap-6">
+    <motion.section
+      className="grid gap-10 rounded-3xl bg-gradient-to-br from-white to-[#f7f7f8] p-10 shadow-sm md:grid-cols-[1.1fr_1fr] md:items-center"
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+    >
+      <motion.div
+        className="flex flex-col gap-6"
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+      >
         {eyebrow ? (
           <span className="inline-flex w-fit items-center rounded-full bg-[#e7e7e9] px-4 py-1 text-sm font-medium text-[#1a1a1a]">
             {eyebrow}
@@ -38,15 +51,20 @@ export default function HeroBanner({
             </Link>
           ) : null}
         </div>
-      </div>
-      <div className="flex items-center justify-center">
+      </motion.div>
+      <motion.div
+        className="flex items-center justify-center"
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.6, delay: 0.3 }}
+      >
         {illustration ? (
           <div className="relative w-full max-w-[320px]">
             {illustration}
           </div>
         ) : null}
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   );
 }
 
