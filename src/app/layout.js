@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Inter } from "next/font/google";
 
 import "./globals.css";
@@ -32,8 +33,15 @@ export default function RootLayout({ children }) {
         <div className="min-h-screen bg-[#ffffff]">
           <header className="border-b border-[#ececee] bg-white">
             <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-5 sm:px-10 lg:px-16">
-              <Link href="/" className="text-lg font-semibold tracking-tight">
-                Bus OG
+              <Link href="/" className="flex items-center">
+                <Image
+                  src="/busoglogo.svg"
+                  alt="Bus OG"
+                  width={120}
+                  height={40}
+                  className="h-8 w-auto"
+                  priority
+                />
               </Link>
               <nav className="flex flex-wrap items-center gap-2 text-sm font-medium text-[#6b6b6b]">
                 {navigation.map((item) => (
